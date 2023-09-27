@@ -9,7 +9,7 @@ const levels = require('../utils/platformHelpers')
 
 //? rendering
 router.get('/create', (req, res) => {
-    res.render('post/create')
+    res.render('posts/create')
 })
 
 

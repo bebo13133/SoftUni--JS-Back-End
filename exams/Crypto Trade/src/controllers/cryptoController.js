@@ -71,10 +71,7 @@ router.get('/:cryptoId/details', async (req, res) => {
         res.render('cryptos/details', { crypto, isOwner })
 
     } catch (err) {
-
         const errorMessage = extractErrorMessage(err)
-
-
         res.render('cryptos/details', { error: errorMessage })
     }
 
@@ -90,8 +87,8 @@ router.get('/:cryptoId/edit', isAuth, async (req, res) => {
 
          crypto.dropDown = levels(crypto.payment); //? използвам го за зареждане на падащото меню 
 
-
         res.render('cryptos/edit', { crypto })
+
     } catch (err) {
         const errorMessage = extractErrorMessage(err)
 
@@ -123,12 +120,9 @@ router.get('/:cryptoId/buy', isAuth, async (req, res) => {
     const userId = req.user?._id
 
     try {
-
         await cryptoService.buy(cryptoId, userId)
 
         res.redirect(`/cryptos/${cryptoId}/details`)
-
-
     } catch (err) {
 
         const errorMessage = extractErrorMessage(err)
@@ -156,9 +150,7 @@ router.get('/search', isAuth, async (req, res) => {
         res.render('cryptos/search', { cryptos })
 
     } catch (err) {
-
         res.redirect('/404')
-
     }
 })
 
@@ -179,10 +171,7 @@ router.get('/:cryptoId/delete', isAuth, async (req, res) => {
 
     } catch (err) {
         const errorMessage = extractErrorMessage(err)
-
-
         res.render(`cryptos/details`, { error: errorMessage })
-
     }
 });
 

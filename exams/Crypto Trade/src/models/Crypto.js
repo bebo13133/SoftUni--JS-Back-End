@@ -7,7 +7,7 @@ const cryptoSchema = new mongoose.Schema({
 name: {
     type: String,
     required: [true, 'Name is required'],
-    minLength:[3, 'characters required minimum with 3 length'],
+    minLength:[4, 'characters required minimum with 3 length'],
     maxLength:[40, 'characters required maximum with 40 length'],
    
 },
@@ -29,7 +29,7 @@ price:{
 description:{
     type: String,
     required: [true, 'Description is required'],
-    minLength:[3, 'characters required minimum with 3 length'],
+    minLength:[10, 'characters required minimum with 3 length'],
     maxLength:[200, 'characters required maximum with 200 length'],
 },
 

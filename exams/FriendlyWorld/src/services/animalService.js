@@ -16,7 +16,7 @@ exports.create = async (animalData) => {
 exports.getAll = () => Animal.find().populate('owner')  //? Сложихме populate за да вземem owner.username в catalog.hbs
 
 //? Delete photo
-exports.delete = (animalId) => Animal.findByIdAndDelete(crypanimalIdtoId)
+exports.delete = (animalId) => Animal.findByIdAndDelete(animalId)
 
 
 //? Edit photo

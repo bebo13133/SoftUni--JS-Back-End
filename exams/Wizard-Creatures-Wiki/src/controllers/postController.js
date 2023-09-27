@@ -1,6 +1,6 @@
 const router = require('express').Router()
 const { extractErrorMessage } = require('../utils/errorHelpers')
-const animalService = require('../services/postService')
+const postService = require('../services/postService')
 const { isAuth } = require('../middlewares/authMiddleware')
 const levels = require('../utils/platformHelpers')
 
@@ -9,31 +9,35 @@ const levels = require('../utils/platformHelpers')
 
 //? rendering
 router.get('/create', (req, res) => {
-    res.render('animals/create')
+    res.render('post/create')
 })
 
 
 //? Create
 router.post('/create', async (req, res) => {
 
-    const { name, years, kind, image, need, location, description } = req.body
+    const { name,
+        species,
+        skinColor,
+        eyeColor,
+        image,
+        description } = req.body
 
     try {
-        await animalService.create({
+        await postService.create({
             name,
-            years,
-            kind,
+            species,
+            skinColor,
+            eyeColor,
             image,
-            need,
-            location,
             description,
             owner: req.user._id,
-        }) 
-        res.redirect('/animals/catalog')   //! да се насочи към каталог
- 
+        })
+        res.redirect('/posts/catalog')   //! да се насочи към каталог
+
     } catch (err) {
 
-        res.render('animals/create', { error: extractErrorMessage(err) })
+        res.render('posts/create', { error: extractErrorMessage(err) })
     }
 });
 
@@ -42,15 +46,15 @@ router.post('/create', async (req, res) => {
 router.get('/catalog', async (req, res) => {
 
     try {
-        const animals = await animalService.getAll().lean()
+        const posts = await postService.getAll().lean()
 
-        res.render('animals/catalog', { animals })
+        res.render('posts/catalog', { posts })
 
     } catch (err) {
         const errorMessage = extractErrorMessage(err)
         console.log(errorMessage)
 
-        res.render('animals/catalog', { error: errorMessage })
+        res.render('posts/catalog', { error: errorMessage })
 
     }
 
@@ -63,7 +67,7 @@ router.get('/:animalId/details', async (req, res) => {
     try {
         const animalId = req.params.animalId
 
-        const animal = await animalService.getOne(animalId).lean()
+        const animal = await postService.getOne(animalId).lean()
 
         const isOwner = req.user?._id == animal.owner._id
 
@@ -85,7 +89,7 @@ router.get('/:animalId/details', async (req, res) => {
 
 router.get('/:animalId/edit', isAuth, async (req, res) => {
     try {
-        const animal = await animalService.getOne(req.params.animalId).lean()
+        const animal = await postService.getOne(req.params.animalId).lean()
 
         // crypto.dropDown = levels(crypto.payment); //? използвам го за зареждане на падащото меню 
 
@@ -101,7 +105,7 @@ router.get('/:animalId/edit', isAuth, async (req, res) => {
 router.post('/:animalId/edit', isAuth, async (req, res) => {
     const animalData = req.body
     try {
-        await animalService.edit(req.params.animalId, animalData)
+        await postService.edit(req.params.animalId, animalData)
 
         res.redirect(`/animals/${req.params.animalId}/details`)
     } catch (err) {
@@ -121,7 +125,7 @@ router.get('/:animalId/donate', isAuth, async (req, res) => {
     const userId = req.user?._id
 
     try {
-        await animalService.buy(animalId, userId)
+        await postService.buy(animalId, userId)
 
         res.redirect(`/animals/${animalId}/details`)
     } catch (err) {
@@ -143,11 +147,11 @@ router.get('/search', isAuth, async (req, res) => {
 
     try {
 
-        if (!!result.search ) {
-            animals = await animalService.searchGames(result.search).lean()
-                console.log(animals)
+        if (!!result.search) {
+            animals = await postService.searchGames(result.search).lean()
+            console.log(animals)
         } else {
-            animals = await animalService.getAll().lean()
+            animals = await postService.getAll().lean()
             // console.log(animals)
 
         }
@@ -169,7 +173,7 @@ router.get('/search', isAuth, async (req, res) => {
 router.get('/:animalId/delete', isAuth, async (req, res) => {
 
     try {
-        await animalService.delete(req.params.animalId)
+        await postService.delete(req.params.animalId)
 
         res.redirect('/animals/catalog')
 

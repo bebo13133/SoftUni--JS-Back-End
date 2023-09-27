@@ -27,20 +27,5 @@ exports.buy = (gameId, userId) => Game.findByIdAndUpdate(gameId, { $push: { boug
 
 
 
-// //? Add comment
-// exports.addComment = async (photoId, commentData) =>{
-//     const photo = await Game.findById(photoId)
-
-//     photo.commentList.push(commentData)
-//     return photo.save()
-
-// }
-
-
-
-// //? Get owner photos - за профилната страница
-
-// exports.getOwnerPhotos = (userId) => Game.find({owner: userId})
-
 //? Search games
 exports.searchGames = (search, platform) => Game.find({ name: { $regex: search, $options: 'i' }, platform: { $regex: platform } })

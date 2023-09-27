@@ -147,22 +147,6 @@ router.get('/:gameId/buy', isAuth, async (req, res) => {
 })
 
 
-
-
-
-
-//? Comments
-
-// router.post('/:gameId/comments',isAuth,async (req, res) => {
-
-// const photoId = req.params.gameId
-// const { comment } = req.body
-// const user = req.user._id
-
-// await photoService.addComment(gameId, {user, comment})
-// res.redirect(`/photos/${gameId}/details`)
-// })
-
 //? Search games
 
 router.get('/search', isAuth, async (req, res) => {

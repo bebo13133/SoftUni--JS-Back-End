@@ -1,0 +1,54 @@
+
+    <!-- Starts Main Section -->
+    <main>
+        <div class="container">
+            <div class="col-9">
+                {{#each photos}}
+                   <div class="card">
+
+                    <div class="top">
+                        <div class="userDetails">
+                            <!-- Link to User Profile Page -->
+                            <a href="#" action="#" method="#">
+                                <div class="profilepic">
+                                    <div class="profile_img">
+                                        <div class="image">
+                                            <img src="/images/person.png">
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                            <h3>
+
+                                <p>
+                                    {{owner.username}}
+                                </p>    
+                                <span>{{location}}</span>
+                            </h3>
+                        </div>
+                    </div>
+
+                    <!-- Start Pet Photo -->
+                    <div class="imgBx">
+                        <img src="{{image}}" alt="{{name}}" class="cover">
+                    </div>
+                    <!-- Name of Pet -->
+                    <h5 class="petName">Name: {{name}}</h5>
+                    <!-- Age of Pet -->
+                    <h5 class="petAge">Age: {{age}}</h5>
+                    <!-- Link to Photo Details Page -->
+                    <a href="/photos/{{_id}}/details" id="see-details">
+                        <h4 class="details">See details</h4>
+                    </a>
+                </div>
+
+                {{else}}
+                <article class="not-available-photo">
+                    <h1>No photo posts yet.</h1>
+                </article>
+                {{/each}}
+
+            </div>
+
+        </div>
+    </main>

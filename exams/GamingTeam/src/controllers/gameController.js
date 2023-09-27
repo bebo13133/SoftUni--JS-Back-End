@@ -96,7 +96,7 @@ router.get('/:gameId/edit', isAuth, async (req, res) => {
     try {
         const game = await gameService.getOne(req.params.gameId).lean()
 
-        game.dropDown = levels(game.platform);  //? използвам го за зареждане на падащото меню 
+        game.dropDown = levels(game.platform); //? използвам го за зареждане на падащото меню 
 
 
         res.render('games/edit', { game })

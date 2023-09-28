@@ -1,18 +1,15 @@
 
-
-    <section class="register-form-container">
-
-        <form method="POST">
-            <h3>Register</h3>
-            <label>Email</label>
-            <input type="email" name="email" class="box" id="email">
-            <label>Username</label>
-            <input type="text" name="username" class="box" id="username">
-            <label>Password</label>
-            <input type="password" name="password" class="box" id="password">
-            <label>Confirm Password</label>
-            <input type="password" name="repeatPassword" class="box" id="Confirm-Password">
-            <input type="submit" value="Register" class="btn">
-            <p>Have an account ? <a href="/users/login">Click here</a></p>
-        </form>
-    </section>
+        <section id="viewRegister">
+            <h2>Create your account:</h2>
+            <form id="formRegister" method="POST">
+                <label for="email">Email:</label>
+                <input type="text" id="email" name="email" placeholder="Email">
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" placeholder="Enter your Username">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" placeholder="Password">
+                <label for="rePassword">Repeat Password:</label>
+                <input type="password" id="rePassword" name="repeatPassword" placeholder="Repeat Password">
+                <input type="submit" class="register" value="Register">
+            </form>
+        </section>

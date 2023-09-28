@@ -1,28 +1,20 @@
 
-    <section class="home" id="home">
 
-        <div class="row">
-    
-            <div class="content">
-                <h3>BookTalk</h3>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam deserunt nostrum accusamus. Nam alias
-                    sit necessitatibus, aliquid ex minima at!</p>
-                <a href="/books/catalog" class="btn">See All</a>
+        <section id="viewCatalog" class="background-img">
+            <div class="added-hotels">
+                {{#each hotels}}
+                <a href="/hotels/{{_id}}/details" class="added-hotel">
+                    <img src="{{image}}" alt=""
+                        class="picture-added-hotel">
+                    <h3>{{name}}</h3>
+                    <span>Free rooms: {{freeRooms}}</span>
+                </a>
+           {{else}}
             </div>
-    
-            <div class="swiper books-slider">
-                <div class="swiper-wrapper">
-                    <img src="/image/book-1.png" alt=""></a>
-                    <img src="/image/book-2.png" alt=""></a>
-                    <img src="/image/book-3.png" alt=""></a>
-                    <img src="/image/book-4.png" alt=""></a>
-                    <img src="/image/book-5.png" alt=""></a>
-                    <img src="/image/book-6.png" alt=""></a>
-                </div>
-                <img src="/image/stand.png" class="stand" alt="">
+          <div class="guest">
+                There are no Hotels found...
             </div>
-    
-        </div>
-    
-    </section>
+                 {{/each}}
+        </section>
 
+ 

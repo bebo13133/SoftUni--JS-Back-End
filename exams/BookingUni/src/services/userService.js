@@ -4,9 +4,9 @@ const bcrypt = require('bcrypt')
 // const {SECRET_KEY} = require('../config/config')
 const {createToken} = require('../utils/tokenHelpers')
 //TODO: LOGIN 
-exports.login = async (email, password) => {
+exports.login = async (username, password) => {
 
-    const user = await User.findOne({ email});
+    const user = await User.findOne({ username});
     if (!user) throw new Error("Cannot find user or password!!")
 
     const validPassword = await bcrypt.compare(password, user.password)
@@ -20,8 +20,8 @@ return token;
 
 //TODO: REGISTER
 exports.register = async (userData) =>{
-    const email = await User.findOne({email: userData.email});
-    if(email){
+    const user = await User.findOne({username: userData.username});
+    if(user){
         throw new Error('This name is already in use')    //? Проверяваме за съществуващ вече user
     }
 

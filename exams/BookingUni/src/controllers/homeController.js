@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const { log } = require('console')
-const postService = require('../services/bookService')
+const hotelService = require('../services/hotelService')
 const {isAuth} = require('../middlewares/authMiddleware');
 const { extractErrorMessage } = require('../utils/errorHelpers')
 const userService = require('../services/userService')
@@ -11,32 +11,43 @@ const userService = require('../services/userService')
 
 router.get('/', async (req, res) => {
   try{
-    
-    res.render('home')
+    const hotels = await hotelService.getAll().lean()
+
+
+    res.render('home', { hotels })
     
   }catch(err) {
 
     const errorMessage = extractErrorMessage(err)
         console.log(errorMessage)
 
-        res.render('/', { error: errorMessage })
+        res.render('hotels/catalog', { error: errorMessage })
   }
 
-});
+})
+
+
+
+
+
+
 
 
 router.get('/profile',isAuth, async (req, res) => {
 userId = req.user._id
-const books = await postService.getOwnerPosts(userId).lean()
-// const owner = await userService.findOwner(userId).lean()
-// let fullName = `${owner.firstName} ${owner.lastName}`
-//   posts.forEach(p => p.author = fullName );
+const userBooking = (await hotelService.getBooked(userId)).map(b=>b.name.join(', '))
+const owner = await userService.findOwner(userId).lean()
+
+owner.bookedNames = userBooking
+
+// let fullName = `${owner.username}`
+// let email = `${owner.email}`
+// hotels.forEach(p => p.author = fullName );
+// hotels.forEach(p => p.emailsUser = email)
 
 
-// posts.author = fullName
-// log(posts)
 
-  res.render('profile',{books})
+  res.render('profile',{owner})
 })
 
 

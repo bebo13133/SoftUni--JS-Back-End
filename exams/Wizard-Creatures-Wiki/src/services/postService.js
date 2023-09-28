@@ -2,8 +2,7 @@ const { search } = require('../controllers/homeController')
 const Post = require('../models/Post')
 
 
-// //?Last three posts -home page
-// exports.lastThree = () => Animal.find().sort({_id: - 1}).limit(3)
+
 
 
 //? Create a new Crypto
@@ -35,7 +34,6 @@ exports.getOneUser= (postId) => Post.findById(postId).populate('votes')
 //? Vote game
 exports.voted = (postId, userId) => Post.findByIdAndUpdate(postId, { $push: { votes: userId } }).populate('owner')
 
+//? profile
+exports.getOwnerPosts = (userId) => Post.find({owner: userId})
 
-
-// //? Search games
-// exports.searchGames = (search) => Animal.find({ location: { $regex: search, $options: 'i' }})

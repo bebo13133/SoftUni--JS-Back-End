@@ -30,4 +30,9 @@ exports.register = async (userData) =>{
   return token;
 } 
 
+
+//? Find Owner
+exports.findOwner=(userId) =>  User.findById(userId)  //? За да вземем името на потребителят
+
+
     

@@ -96,7 +96,7 @@ router.get('/:postId/details', async (req, res) => {
 
 
 
-//? Edit animal
+//? Edit post
 
 router.get('/:postId/edit', isAuth, async (req, res) => {
     try {
@@ -149,34 +149,6 @@ router.get('/:postId/votes', isAuth, async (req, res) => {
 })
 
 
-// //? Search animals - 
-
-// router.get('/search', isAuth, async (req, res) => {
-//     const result = { ...req.query }
-
-//     let animals;
-
-//     try {
-
-//         if (!!result.search) {
-//             animals = await postService.searchGames(result.search).lean()
-//             console.log(animals)
-//         } else {
-//             animals = await postService.getAll().lean()
-//             // console.log(animals)
-
-//         }
-//         res.render('animals/search', { animals })
-
-//     } catch (err) {
-//         res.redirect('/404')
-//     }
-// })
-
-
-
-
-
 
 
 //? Delete photo
@@ -193,6 +165,8 @@ router.get('/:postId/delete', isAuth, async (req, res) => {
         res.render(`posts/details`, { error: errorMessage })
     }
 });
+
+
 
 
 

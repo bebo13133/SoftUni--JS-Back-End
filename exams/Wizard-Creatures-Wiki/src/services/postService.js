@@ -24,13 +24,18 @@ exports.edit = (postId, postData) => Post.findByIdAndUpdate(postId, postData).po
 
 
 //? Details render
-exports.getOne = (animalId) => Animal.findById(animalId).populate('owner') //? Сложихме populate за да вземem owner.username в catalog.hbs
-
-
-//? Buy game
-exports.buy = (animalId, userId) => Animal.findByIdAndUpdate(animalId, { $push: { donations: userId } })
+exports.getOne = (postId) => Post.findById(postId).populate('owner') //? Сложихме populate за да вземem owner.username в catalog.hbs
 
 
 
-//? Search games
-exports.searchGames = (search) => Animal.find({ location: { $regex: search, $options: 'i' }})
+//? OneUser -за гласувалите users
+exports.getOneUser= (postId) => Post.findById(postId).populate('votes')
+
+
+//? Vote game
+exports.voted = (postId, userId) => Post.findByIdAndUpdate(postId, { $push: { votes: userId } }).populate('owner')
+
+
+
+// //? Search games
+// exports.searchGames = (search) => Animal.find({ location: { $regex: search, $options: 'i' }})

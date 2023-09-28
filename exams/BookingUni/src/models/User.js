@@ -39,9 +39,7 @@ const userSchema = new mongoose.Schema({
 
 })
 
-
 //todo: Валидация repeatPassword - 
-
 
 userSchema.virtual('repeatPassword').set(function (value) {
     if (value !== this.password) throw new Error('The password is not correct.')

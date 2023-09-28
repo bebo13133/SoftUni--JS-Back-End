@@ -26,16 +26,9 @@ router.get('/', async (req, res) => {
 
 })
 
-
-
-
-
-
-
-
 router.get('/profile',isAuth, async (req, res) => {
 userId = req.user._id
-const userBooking = (await hotelService.getBooked(userId)).map(b=>b.name.join(', '))
+const userBooking = (await hotelService.getBooked(userId)).map(b=>b.name)
 const owner = await userService.findOwner(userId).lean()
 
 owner.bookedNames = userBooking
@@ -44,8 +37,6 @@ owner.bookedNames = userBooking
 // let email = `${owner.email}`
 // hotels.forEach(p => p.author = fullName );
 // hotels.forEach(p => p.emailsUser = email)
-
-
 
   res.render('profile',{owner})
 })

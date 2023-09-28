@@ -8,14 +8,14 @@ name: {
     type: String,
     required: [true, 'Name is required'],
     minLength:[4, 'characters required minimum with 3 length'],
-    maxLength:[50, 'characters required maximum with 40 length'],
+    maxLength:[50, 'characters required maximum with 100 length'],
    
 },
 city: {
     type: String,
     required: [true, 'Name is required'],
     minLength:[3, 'characters required minimum with 3 length'],
-    maxLength:[50, 'characters required maximum with 40 length'],
+    maxLength:[50, 'characters required maximum with 50 length'],
    
 },
 image:{

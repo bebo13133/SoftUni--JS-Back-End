@@ -15,25 +15,25 @@ exports.create = async (bookData) => {
 exports.getAll = () => Book.find().populate('owner')  //? Сложихме populate за да вземeм owner.username в catalog.hbs
 
 //? Delete photo
-exports.delete = (postId) => Post.findByIdAndDelete(postId)
+exports.delete = (bookId) => Book.findByIdAndDelete(bookId)
 
 
 //? Edit photo
-exports.edit = (postId, postData) => Post.findByIdAndUpdate(postId, postData).populate('owner')
+exports.edit = (bookId, bookData) => Book.findByIdAndUpdate(bookId, bookData).populate('owner')
 
 
 //? Details render
-exports.getOne = (postId) => Post.findById(postId).populate('owner') //? Сложихме populate за да вземem owner.username в catalog.hbs
+exports.getOne = (bookId) => Book.findById(bookId).populate('owner') //? Сложихме populate за да вземem owner.username в catalog.hbs
 
 
 
-//? OneUser -за гласувалите users
-exports.getOneUser= (postId) => Post.findById(postId).populate('votes')
+// //? OneUser -за гласувалите users
+// exports.getOneUser= (postId) => Post.findById(postId).populate('votes')
 
 
-//? Vote game
-exports.voted = (postId, userId) => Post.findByIdAndUpdate(postId, { $push: { votes: userId } }).populate('owner')
+//? VReading book
+exports.reading = (bookId, userId) => Book.findByIdAndUpdate(bookId, { $push: { wishingList: userId } }).populate('owner')
 
 //? profile
-exports.getOwnerPosts = (userId) => Post.find({owner: userId})
+exports.getOwnerPosts = (userId) => Book.find({owner: userId})
 

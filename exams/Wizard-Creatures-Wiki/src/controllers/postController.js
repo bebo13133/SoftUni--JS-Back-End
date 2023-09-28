@@ -109,7 +109,7 @@ router.get('/:postId/edit', isAuth, async (req, res) => {
     } catch (err) {
         const errorMessage = extractErrorMessage(err)
 
-        res.render(`animals/edit`, { error: errorMessage })
+        res.render(`posts/edit`, { error: errorMessage })
     }
 });
 

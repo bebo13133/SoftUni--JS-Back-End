@@ -61,88 +61,80 @@ router.get('/catalog', async (req, res) => {
 
 //? Details
 
-router.get('/:postId/details', async (req, res) => {
+router.get('/:bookId/details', async (req, res) => {
 
     try {
-        const postId = req.params.postId
+        const bookId = req.params.bookId
 
-        const post = await bookService.getOne(postId).lean()
-        // const postVotes = await postService.getOneUser(postId)
+        const book = await bookService.getOne(bookId).lean()
+    
 
-        const isOwner = req.user?._id == post.owner._id
-
-        //      //! Събирам на всички гласували потребители email адресите
-
-        //      let voteUsers = postVotes.toObject();
-        //     let emails = []
-        //     voteUsers.votes.forEach(x => emails.push(x.email))
-        //     emails.join(', ')
-        //     console.log(emails)
-        // //?--------------------------------------------------------------//    
-        if (JSON.parse(JSON.stringify(post.votes)).includes(req.user?._id)) {
-            post.alreadyVoted = true;                                      //? Проверявам да usera съществува вече в boughtBy от модела
+        const isOwner = req.user?._id == book.owner._id
+    
+        if (JSON.parse(JSON.stringify(book.wishingList)).includes(req.user?._id)) {
+            book.alreadyRead = true;                                      //? Проверявам да usera съществува вече в boughtBy от модела
         }
 
 
-        res.render('posts/details', { post, isOwner, emails })
+        res.render('books/details', { book, isOwner})
 
     } catch (err) {
         const errorMessage = extractErrorMessage(err)
-        res.render('posts/details', { error: errorMessage })
+        res.render('books/details', { error: errorMessage })
     }
 
 })
 
 
 
-//? Edit post
+//? Edit book
 
-router.get('/:postId/edit', isAuth, async (req, res) => {
+router.get('/:bookId/edit', isAuth, async (req, res) => {
     try {
-        const post = await postService.getOne(req.params.postId).lean()
+        const book = await bookService.getOne(req.params.bookId).lean()
 
         // crypto.dropDown = levels(crypto.payment); //? използвам го за зареждане на падащото меню 
 
-        res.render('posts/edit', { post })
+        res.render('books/edit', { book })
 
     } catch (err) {
         const errorMessage = extractErrorMessage(err)
 
-        res.render(`animals/edit`, { error: errorMessage })
+        res.render(`books/edit`, { error: errorMessage })
     }
 });
 
-router.post('/:postId/edit', isAuth, async (req, res) => {
-    const postData = req.body
+router.post('/:bookId/edit', isAuth, async (req, res) => {
+    const bookData = req.body
     try {
-        await postService.edit(req.params.postId, postData)
+        await bookService.edit(req.params.bookId, bookData)
 
-        res.redirect(`/posts/${req.params.postId}/details`)
+        res.redirect(`/books/${req.params.bookId}/details`)
     } catch (err) {
 
         const errorMessage = extractErrorMessage(err)
 
-        res.render(`/posts/${req.params.postId}/edit`, { error: errorMessage, ...postData })
+        res.render(`/books/${req.params.bookId}/edit`, { error: errorMessage, ...bookData })
     }
 
 
 })
 
-//?Voted 
+//? isReading
 
-router.get('/:postId/votes', isAuth, async (req, res) => {
-    const postId = req.params.postId
+router.get('/:bookId/wishingList', isAuth, async (req, res) => {
+    const bookId = req.params.bookId
     const userId = req.user?._id
 
     try {
-        await postService.voted(postId, userId)
+        await bookService.reading(bookId, userId)
 
-        res.redirect(`/posts/${postId}/details`)
+        res.redirect(`/books/${bookId}/details`)
     } catch (err) {
 
         const errorMessage = extractErrorMessage(err)
 
-        res.render(`posts/edit`, { error: errorMessage })
+        res.render(`books/edit`, { error: errorMessage })
     }
 
 })

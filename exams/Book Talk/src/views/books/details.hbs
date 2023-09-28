@@ -1,66 +1,36 @@
-<main>
 
-    <section id="details-page">
+    <section class="details-page">
+        <h1>Details</h1>
+        <article class="details-card">
 
-        <div class="main_card">
-            <div class="card_left">
-                <div class="card_datails">
-
-                    <h1>Name: {{post.name}}</h1>
-                    <h3>Created by an author: {{post.owner.firstName}} {{post.owner.lastName}}</h3>
-                    <div class="card_character">
-                        <p class="card-species">Species: {{post.species}}</p>
-                        <p class="card-skin">Skin colour: {{post.skinColor}}</p>
-                        <p class="card-eye">Eye Colour: {{post.eyeColor}}</p>
-                    </div>
-
-                    <p class="disc">{{post.description}}</p>
+            <article class="details-card-text">
+                <h2>Title:<br> {{book.title}}</h2>
+                <h3>Author: {{book.author}}</h3>
+                <h3>Stars: {{book.stars}}</h3>
+                <h3>Genre: {{book.genre}}</h3>
+                <h3>{{book.review}}</h3>
 
                     {{#if isAuthenticated}}
-                    <div class="social-btn">
-                        {{#if isOwner}}
-                        <a href="/posts/{{post._id}}/edit" class="edit-btn">Edit</a>
-                        <a href="/posts/{{post._id}}/delete" class="del-btn">Delete</a>
-                         {{/if}}
-                       {{#unless isOwner}}
-                        {{#if post.alreadyVoted}}
-                        <p class="thanks-for-vote">Thanks For Voting</p>
-                        {{else}}
-                        <a href="/posts/{{post._id}}/votes" class="vote-up">Vote</a>
-                        {{/if}}
-                        {{/unless}}
-                       
-
-                    </div>
+                <div class="buttons">
+                   {{#if isOwner}}
+                    <a href="/books/{{book._id}}/edit" class="btn-edit">Edit</a>
+                    <a href="/books/{{book._id}}/delete" class="btn-delete">Delete</a>
+                 {{/if}}
+                    {{#unless isOwner}}
+                   {{#if book.alreadyRead}}
+                    <p class="wish-pub">You already added the book to your wish list</p>
+                    {{else}}
+                    <a href="/books/{{book._id}}/wishingList" class="btn-wish">Wish to read</a>
                     {{/if}}
+                    {{/unless}}
+                   
                 </div>
-            </div>
-            <div class="card_right">
-                <img src="{{post.image}}" alt="image">
-            </div>
-        </div>
+                {{/if}}
+            </article>
 
+            <article class="details-card-image">
+                <img src="{{book.image}}">
+            </article>
+
+        </article>
     </section>
-
-    <section id="votes">
-        <div class="vote-info">
-            <div class="card_left">
-                <div class="card_datails">
-                    <h1>Votes</h1>
-                    <div class="card_vote">
-                        {{#if emails}}
-                        <!-- Show the rating of votes, if there are no votes yet, the number must be 0. -->
-                        <p class="PV">Total rating of votes: {{emails.length}}</p>
-                    </div>
-                    <!-- If there are already people who have cast their vote for the post, separate their emails with a comma and a space ", " -->
-                     <p class="disc"> {{emails }} </p>
-
-                  {{else}}
-                    <p class="disc">People who voted for the post - No one has voted yet.</p>
-                    {{/if}}
-                </div>
-            </div>
-        </div>
-    </section>
-
-</main>

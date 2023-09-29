@@ -1,24 +1,16 @@
 
 
-    <main>
-        <!-- In case of error, you should display div with class "errorContainer" -->
-        <!-- You can choose to display the first error or all of them (error message/s in your opinion) -->
+        <main>
+            <form class="text-center border border-light p-5" method="POST">
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" class="form-control" placeholder="Username" name="username" value="">
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" class="form-control" placeholder="Password" name="password" value="">
+                </div>
 
-        <!-- <div>
-            <div class="errorContainer">
-                <p>Error</p>
-            </div>
-        </div> -->
-
-        <div class="login-box">
-            <h1>Login</h1>
-            <form method="POST">
-                <label>Email</label>
-                <input type="text" name="email" placeholder="Email..">
-                <label>Password</label>
-                <input type="password" name="password" placeholder="Password..">
-                <input type="submit" value="Submit">
+                <button type="submit" class="btn btn-primary">Login</button>
             </form>
-            <p>Not have an account? <a href="/user/register">Register here</a></p>
-        </div>
-    </main>
+        </main>

@@ -10,11 +10,11 @@ const userSchema = new mongoose.Schema({
         // match: [/^[A-Za-z0-9]+$/, 'Username must be english'],   //? да се види имали го като условие 
         unique: { value: true, message: 'this name is already in use' },
     },
-    email: {
-        type: String,
-        required: [true, 'Please enter a valid email address'],
-        minLength: [10, 'characters required minimum with 3 length']
-    },
+    // email: {
+    //     type: String,
+    //     required: [true, 'Please enter a valid email address'],
+    //     minLength: [10, 'characters required minimum with 3 length']
+    // },
     password: {
         type: String,
         required: [true, 'Please enter a valid password'],

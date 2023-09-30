@@ -80,6 +80,7 @@ router.get('/:postId/details', async (req, res) => {
         voteUsers.votes.forEach(x => emails.push(x.email))
        const resultEmail =  emails.join(', ')
        console.log(resultEmail.length)
+
     //?--------------------------------------------------------------//    
         if (JSON.parse(JSON.stringify(post.votes)).includes(req.user?._id)) {
             post.alreadyVoted = true;                                      //? Проверявам да usera съществува вече в boughtBy от модела

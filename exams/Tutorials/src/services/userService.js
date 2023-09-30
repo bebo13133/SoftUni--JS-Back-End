@@ -1,8 +1,11 @@
 const User = require('../models/User')
 const bcrypt = require('bcrypt')
-// const jwt = require('../lib/jwt')
+const jwt = require('../lib/jwt')
 // const {SECRET_KEY} = require('../config/config')
 const {createToken} = require('../utils/tokenHelpers')
+
+
+
 //TODO: LOGIN 
 exports.login = async (username, password) => {
 

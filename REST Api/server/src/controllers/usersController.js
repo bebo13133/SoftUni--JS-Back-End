@@ -13,6 +13,7 @@ router.post('/register', async (req, res) => {
 
     } catch (err) {
         console.log(err)
+           //todo: Error handling
         res.status(404).json({
             message: err.message
         })
@@ -32,6 +33,7 @@ router.post('/login', async (req, res) => {
         res.json(result)
 
     } catch (err) {
+           //todo: Error handling
         res.status(404).json({
             message: err.message
         })

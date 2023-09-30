@@ -5,7 +5,7 @@ const homeController = require('../controllers/homeController');
 module.exports = (app)=>{
     app.use(homeController)
     app.use('/users', userController)
-    // app.use('/data', furnitureController)
+     app.use('/data', furnitureController)
 
 }
 

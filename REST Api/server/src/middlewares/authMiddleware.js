@@ -8,10 +8,11 @@ exports.auth = async (req, res, next) => {
         try {
             const decodedToken = await jwt.verify(token, SECRET_KEY)
 
-            res.user = decodedToken
+            req.user = decodedToken
 
             next()
         } catch (err) {
+            //todo: Error handling
             res.status(401).json({ message: "You are not allowed to access this" })
 
         }

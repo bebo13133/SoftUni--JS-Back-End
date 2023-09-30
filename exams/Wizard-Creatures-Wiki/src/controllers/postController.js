@@ -75,17 +75,18 @@ router.get('/:postId/details', async (req, res) => {
          //! Събирам на всички гласували потребители email адресите
 
          let voteUsers = postVotes.toObject();
+        
         let emails = []
         voteUsers.votes.forEach(x => emails.push(x.email))
-        emails.join(', ')
-        console.log(emails)
+       const resultEmail =  emails.join(', ')
+       console.log(resultEmail.length)
     //?--------------------------------------------------------------//    
         if (JSON.parse(JSON.stringify(post.votes)).includes(req.user?._id)) {
             post.alreadyVoted = true;                                      //? Проверявам да usera съществува вече в boughtBy от модела
         }
 
       
-        res.render('posts/details', { post, isOwner, emails})
+        res.render('posts/details', { post, isOwner, resultEmail,emails })
 
     } catch (err) {
         const errorMessage = extractErrorMessage(err)

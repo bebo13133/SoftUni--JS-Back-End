@@ -48,12 +48,12 @@
                 <div class="card_datails">
                     <h1>Votes</h1>
                     <div class="card_vote">
-                        {{#if emails}}
+                        {{#if resultEmail}}
                         <!-- Show the rating of votes, if there are no votes yet, the number must be 0. -->
                         <p class="PV">Total rating of votes: {{emails.length}}</p>
                     </div>
                     <!-- If there are already people who have cast their vote for the post, separate their emails with a comma and a space ", " -->
-                     <p class="disc"> {{emails }} </p>
+                     <p class="disc"> {{resultEmail}} </p>
 
                   {{else}}
                     <p class="disc">People who voted for the post - No one has voted yet.</p>

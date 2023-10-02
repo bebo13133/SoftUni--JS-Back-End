@@ -2,7 +2,15 @@ const { mongoose } = require('mongoose');
 const bcrypt = require('bcrypt');
 const userSchema = new mongoose.Schema({
 
-    username: {
+    firstName: {
+        type: String,
+        required: [true, 'Please enter a username'],
+        minLength: [4, 'characters required minimum with 3 length'],
+        maxLength: 50,
+        // match: [/^[A-Za-z0-9]+$/, 'Username must be english'],   //? да се види имали го като условие 
+        unique: { value: true, message: 'this name is already in use' },
+    },
+    lastName: {
         type: String,
         required: [true, 'Please enter a username'],
         minLength: [4, 'characters required minimum with 3 length'],

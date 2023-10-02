@@ -1,0 +1,66 @@
+<section id="catalog-section">
+
+    <h1 class="item">
+        {{house.title}}
+
+        <div class="f-right">
+            {{#if isOwner}}
+            <a class="action pad-small f-left" href="/houses/{{house._id}}/edit">Edit</a>
+            <a class="action pad-small f-left" href="/houses/{{house._id}}/delete">Delete</a>
+            {{/if}}
+        </div>
+
+    </h1>
+    <div class="item padded">
+
+        <div class="layout right large">
+
+            <div class="col">
+                <img src="{{house.image}}" class="img-large">
+            </div>
+
+            <div class="content pad-med">
+                <p>In category: <strong>{{house.categoryValue}}</strong></p>
+                <p>{{house.description}}</p>
+
+                <div class="align-center">
+                    <div>
+                        Current price: $<strong>{{house.price}}</strong>
+                    </div>
+                    {{#if isAuthenticated}}
+                    {{#if isOwner}}
+                    {{#if house.hasBidder}}
+                    <div>
+                        Bid by <strong>{{house.bidderFullName}}</strong>
+                        <a class="action pad-med cta" href="/houses/{{house._id}}/close">Close Auction</a>
+
+                        {{else}}
+                        No bids
+                    </div>
+                    {{/if}}
+                    {{else}}
+
+                    {{#if house.alreadyBid}}
+                    <!-- If current user is the bidder -->
+                    <div>
+                        You are currently the <strong>highest bidder</strong> for this auction
+                    </div>
+                    {{else}}
+                    <!-- If current user can place a bid -->
+
+                    <form class="vertical" method="POST" action="#">
+                        <label><span>Bid amount</span><input type="number" name="bid"></label>
+                        <input class="action" type="submit" value="Place bid">
+                    </form>
+                    {{/if}}
+                    {{/if}}
+                    {{/if}}
+                </div>
+
+            </div>
+        </div>
+
+        <footer>Listed by {{ house.ownerFullName}}</footer>
+    </div>
+
+</section>

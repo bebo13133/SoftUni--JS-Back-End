@@ -37,9 +37,9 @@ router.get('/register', (req, res) => {
 router.post('/register', async (req, res) => {
 
     try {
-        const { username, email, password, repeatPassword } = req.body
+        const {firstName, lastName, email, password, repeatPassword } = req.body
 
-        const token = await userService.register({ username, email, password, repeatPassword })
+        const token = await userService.register({ firstName, lastName, email, password, repeatPassword })
         res.cookie('auth', token, { httpOnly: true })
         res.redirect('/')
 
@@ -49,7 +49,6 @@ router.post('/register', async (req, res) => {
         res.status(400).render('users/register', { error: errorMessage })
     }
 });
-
 
 //TODO: Logout
 router.get('/logout', (req, res) => {

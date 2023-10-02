@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const { log } = require('console')
-const photoService = require('../services/cryptoService')
+const houseService = require('../services/houseService')
 const {isAuth} = require('../middlewares/authMiddleware');
 //! да не забравя да го експортна router
 

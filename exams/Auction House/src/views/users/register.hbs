@@ -1,35 +1,51 @@
 
 
-    <main>
-        <!-- In case of error, you should display div with class "errorContainer" -->
-        <!-- You can choose to display the first error or all of them (error message/s in your opinion) -->
-        <!-- <div>
-            <div class="errorContainer">
-                <p>Error</p>
-            </div>
-        </div> -->
-        
-        <div class="register-box">
-            <h1>Register</h1>
-            <h4>It's free and only take a minute</h4>
-            <form  method="POST">
-                <label>Username</label>
-                <input type="text" name="username" placeholder="Username..">
-                <label>Email</label>
-                <input type="text" name="email" placeholder="Email..">
-                <label>Password</label>
-                <input type="password" name="password" placeholder="Password..">
-                <label>Confirm Password</label>
-                <input type="password" name="repeatPassword" placeholder="Confirm Password..">
-                <input type="submit" value="Submit">
-            </form>
-            <p>Already have an account? <a href="/users/login">Login here</a></p>
-        </div>
-    </main>
+        <main>
 
-    <footer>
-        <p>Back-End 2022</p>
-    </footer>
+            <section id="register-section" class="narrow">
+
+                <h1 class="item">Register</h1>
+
+                <div class="item padded align-center">
+
+                    <form class="aligned" method="POST">
+
+                        <label>
+                            <span>Email</span>
+                            <input type="text" name="email">
+                        </label>
+                        <label>
+                            <span>First name</span>
+                            <input type="text" name="firstName">
+                        </label>
+                        <label>
+                            <span>Last name</span>
+                            <input type="text" name="lastName">
+                        </label>
+                        <label>
+                            <span>Password</span>
+                            <input type="password" name="password">
+                        </label>
+                        <label>
+                            <span>Repeat Password</span>
+                            <input type="password" name="repeatPassword">
+                        </label>
+
+                        <div class="align-center">
+                            <input class="action" type="submit" value="Create Account">
+                        </div>
+
+                    </form>
+
+                </div>
+
+            </section>
+
+        </main>
+
+        <footer>SoftUni &copy; 2022 | Design by Viktor Kostadinov</footer>
+    </div>
+
 </body>
 
 </html>

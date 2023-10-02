@@ -20,7 +20,7 @@ return token;
 
 //TODO: REGISTER
 exports.register = async (userData) =>{
-    const user = await User.findOne({username: userData.username});
+    const user = await User.findOne({email: userData.email});
     if(user){
         throw new Error('This name is already in use')    //? Проверяваме за съществуващ вече user
     }

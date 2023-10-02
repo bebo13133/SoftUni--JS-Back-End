@@ -1,11 +1,13 @@
 function levels(currentOption) {
     const availableOptions = [
-        { key: 'crypto-wallet', label: 'Crypto Wallet', selected: false },
-        { key: 'credit-card', label: 'Credit Card', selected: false },
-        { key: 'debit-card', label: 'Debit Card', selected: false },
-        { key: 'paypal', label: 'PayPal', selected: false },
+        { key: 'estate', label: 'Real Estate', selected: false },
+        { key: 'vehicles', label: 'Vehicles', selected: false },
+        { key: 'furniture', label: 'Furniture', selected: false },
+        { key: 'electronics', label: 'Electronics', selected: false },
+        { key: 'other', label: 'Other', selected: false },
+
     ]
-    const result = availableOptions.map(x => x.key == currentOption ? { ...x, selected: true } : x);
+     const result = availableOptions.map(x => x.key == currentOption ? { ...x, selected: true } : x);
     return result;
 }
 

@@ -3,47 +3,65 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home Page - Crypto Web</title>
-    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/site.css">
+    <title>Auction House</title>
 </head>
 
 <body>
-    <header class="header">
-        <nav>
-            <img src="/images/logo.png" class="logo">
-            <ul>
-                <li><a href="/">Home</a></li>
-                <li><a href="/cryptos/catalog">All Crypto</a></li>
 
-                {{#if isAuthenticated}}
-                <li><a href="/cryptos/search">Search</a></li>
-                <li><a href="/cryptos/create">Create Offer</a></li>
-                <li><a href="/users/logout">Logout</a></li>
+    <div id="page-content">
 
-                {{else}}
-                <li><a href="/users/login">Login</a></li>
-                <li><a href="/users/register">Register</a></li>
+        <header>
+            <a href="/" class="title-logo">
+                <img src="/assets/logo.png">
+                <span>Auction House</span>
+            </a>
+            <nav class="main-nav nav-mid">
+                <ul>
+                    <li>
+                        <a href="/houses/catalog">Browse</a>
+                    </li>
+                    <!-- User actions -->
+                       {{#if isAuthenticated}}
+                    <li class="user">
+                        <a href="/houses/create">Publish</a>
+                    </li>
 
-                {{/if}}
-            </ul>
-        </nav>
-    </header>
+                 
+                    <li class="user">
+                        <a href="/houses/closed">Closed Auctions</a>
+                    </li>
+                    
 
-    {{#each error}}
+                    <li class="user">
+                        <a href="/users/logout">Logout</a>
+                    </li>
+                    {{else}}
+                    <!-- Guest actions -->
+                    <li class="guest">
+                        <a href="/users/register">Register</a>
+                    </li>
+                    <li class="guest">
+                        <a href="/users/login">Login</a>
+                    </li>
+                    {{/if}}
+                </ul>
 
-    <div>
-        <div class="errorContainer">
+            </nav>
+        </header>
+
+
+        {{#each error}}
+        <div class="error-box">
             <p>{{this}}</p>
         </div>
-    </div>
-    {{/each}}
-    {{{body}}}
+        {{/each}}
 
-    <footer>
-        <p>Back-End 2022</p>
-    </footer>
+        {{{body}}}
+
+        <footer>SoftUni &copy; 2022 | Design by Viktor Kostadinov</footer>
+    </div>
 
 </body>
 

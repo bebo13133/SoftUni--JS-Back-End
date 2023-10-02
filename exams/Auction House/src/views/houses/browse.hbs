@@ -1,0 +1,49 @@
+
+        <main>
+
+
+            <!-- Browse Page -->
+            <section id="catalog-section" class="spaced">
+
+                <h1 class="item">Auctions</h1>
+
+                <!-- List of available auctions -->
+                {{#if houses}}
+                <ul class="catalog cards">
+                    {{#each houses}}
+                    <li class="item">
+                        <header class="pad-med">
+                            <h2>{{title}}</h2>
+                        </header>
+
+                        <div class="align-center">
+                            <img class="img-thumb" src="{{image}}">
+                        </div>
+
+                        <footer class="align-center pad-med">
+                            <p>Current price: <strong>${{price}}</strong></p>
+                            <a class="action" href="/houses/{{_id}}/details">See details</a>
+                        </footer>
+                    </li>
+                    {{/each}}
+                </ul>
+
+               {{else}}
+                <div class="item pad-large align-center">
+                    <p>Nothing has been listed yet. Be the first!</p>
+                    <div>
+                        <a class="action" href="/houses/create">Publish Auction</a>
+                    </div>
+                </div>
+                {{/if}}
+
+            </section>
+
+        </main>
+
+        <footer>SoftUni &copy; 2022 | Design by Viktor Kostadinov</footer>
+    </div>
+
+</body>
+
+</html>

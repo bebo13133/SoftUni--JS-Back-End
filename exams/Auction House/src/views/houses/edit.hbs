@@ -1,0 +1,62 @@
+<main>
+
+
+
+    <!-- Edit Page -->
+    <section id="create-section">
+
+        <h1 class="item">Edit Auction</h1>
+
+        <div class="item padded align-center">
+
+            <form class="layout left large" method="POST">
+
+                <div class="col aligned">
+                    <label>
+                        <span>Title</span>
+                        <input type="text" name="title" value="{{house.title}}"></label>
+                    <label>
+                        <span>Category</span>
+                        <select name="category">
+                            {{#each house.dropDown}}
+                            <option value="{{key}}" {{#if selected}}selected{{/if}}>{{label}}</option>
+                            {{/each}}
+                        </select>
+                    </label>
+                    <label>
+                        <span>Image URL</span>
+                        <input type="text" name="image" value="{{house.image}}">
+                    </label>
+                    <label>
+                        <span>Starting price</span>
+
+                        <!-- If the current auction has a bidder, this input field should be disabled -->
+                        <input type="number" name="price" value="{{house.price}} {{#if house.alreadyBid}}disabled{{/if}}">
+                    </label>
+                </div>
+
+                <div class="content pad-med align-center vertical">
+                    <label>
+                        <span>Description</span>
+                        <textarea name="description">{{house.description}}</textarea>
+                    </label>
+
+                    <div class="align-center">
+                        <input class="action" type="submit" value="Update Listing">
+                    </div>
+                </div>
+
+            </form>
+
+        </div>
+
+    </section>
+
+</main>
+
+<footer>SoftUni &copy; 2022 | Design by Viktor Kostadinov</footer>
+</div>
+
+</body>
+
+</html>

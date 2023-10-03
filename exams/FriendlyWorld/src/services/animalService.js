@@ -3,7 +3,7 @@ const Animal = require('../models/Animal')
 
 
 //?Last three posts -home page
-exports.lastThree = () => Animal.find().sort({_id: - 1}).limit(3)
+exports.lastThree = () => Animal.find().sort({ _id: - 1 }).limit(3)
 
 
 //? Create a new Crypto
@@ -20,7 +20,7 @@ exports.delete = (animalId) => Animal.findByIdAndDelete(animalId)
 
 
 //? Edit photo
-exports.edit = (animalId, animalData) => Animal.findByIdAndUpdate(animalId, animalData).populate('owner')
+exports.edit = (animalId, animalData) => Animal.updateOne({ _id: animalId }, { $set: animalData }, { runValidators: true }).populate('owner')
 
 
 //? Details render
@@ -33,4 +33,4 @@ exports.buy = (animalId, userId) => Animal.findByIdAndUpdate(animalId, { $push: 
 
 
 //? Search games
-exports.searchGames = (search) => Animal.find({ location: { $regex: search, $options: 'i' }})
+exports.searchGames = (search) => Animal.find({ location: { $regex: search, $options: 'i' } })

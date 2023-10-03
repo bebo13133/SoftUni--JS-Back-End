@@ -15,7 +15,7 @@ exports.delete = (gameId) => Game.findByIdAndDelete(gameId)
 
 
 //? Edit photo
-exports.edit = (gameId, gameData) => Game.findByIdAndUpdate(gameId, gameData).populate('owner')
+exports.edit = (gameId, gameData) => Game.findByIdAndUpdate({_id: gameId}, {$set:gameData}, {runValidators:true}).populate('owner')
 
 
 //? Details render

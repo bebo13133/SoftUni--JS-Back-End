@@ -170,16 +170,16 @@ router.get('/search', isAuth, async (req, res) => {
 
 //? Delete photo
 
-router.get('/:cryptoId/delete', isAuth, async (req, res) => {
+router.get('/:coursesId/delete', isAuth, async (req, res) => {
 
     try {
-        await cryptoService.delete(req.params.cryptoId)
+        await courseService.delete(req.params.coursesId)
 
-        res.redirect('/cryptos/catalog')
+        res.redirect('/courses/catalog')
 
     } catch (err) {
         const errorMessage = extractErrorMessage(err)
-        res.render(`cryptos/details`, { error: errorMessage })
+        res.render(`courses/details`, { error: errorMessage })
     }
 });
 

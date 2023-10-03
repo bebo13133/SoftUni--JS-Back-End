@@ -15,7 +15,7 @@ exports.delete = (courseId) => Course.findByIdAndDelete(courseId)
 
 
 //? Edit photo
-exports.edit = (courseId, courseData) => Course.findByIdAndUpdate(courseId, courseData).populate('owner')
+exports.edit = (courseId, courseData) => Course.findByIdAndUpdate({ _id: courseId }, { $set: courseData }, { runValidators: true }).populate('owner')
 
 
 //? Details render
@@ -28,4 +28,4 @@ exports.enrolled = (courseId, userId) => Course.findByIdAndUpdate(courseId, { $p
 
 
 //? Search games
-exports.searchGames = (search) => Course.find({ title: { $regex: search, $options: 'i' }})
+exports.searchGames = (search) => Course.find({ title: { $regex: search, $options: 'i' } })

@@ -19,7 +19,7 @@ exports.delete = (postId) => Post.findByIdAndDelete(postId)
 
 
 //? Edit photo
-exports.edit = (postId, postData) => Post.findByIdAndUpdate(postId, postData).populate('owner')
+exports.edit = (postId, postData) => Post.findByIdAndUpdate({_id:postId}, {$set:postData},{runValidators:true}).populate('owner')
 
 
 //? Details render

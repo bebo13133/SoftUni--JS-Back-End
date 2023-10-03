@@ -15,7 +15,7 @@ exports.delete = (houseId) => House.findByIdAndDelete(houseId)
 
 
 //? Edit photo
-exports.edit = (houseId, houseData) => House.findByIdAndUpdate(houseId, houseData).populate('owner')
+exports.edit = (houseId, houseData) => House.findByIdAndUpdate({_id:houseId}, {$set: houseData},{runValidators:true}).populate('owner')
 
 
 //? Details render

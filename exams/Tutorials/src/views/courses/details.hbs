@@ -2,7 +2,7 @@
 
         <main>
             <div class="container">
-                <h1 class="my-4">Title : JavaScript
+                <h1 class="my-4">Title : {{course.title}}
                 </h1>
             {{#if isAuthenticated}}
                 <div class="row">
@@ -15,7 +15,7 @@
 
                     <div class="col-md-4 text-center">
                         <h4 class="my-3">Duration</h4>
-                        <p>{{duration}} weeks</p>
+                        <p>{{course.duration}} weeks</p>
                         <h3 class="my-3">Description</h3>
                         <p>{{course.description}}</p>
                         {{#if isOwner}}

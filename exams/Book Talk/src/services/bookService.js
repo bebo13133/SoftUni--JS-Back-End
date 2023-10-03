@@ -19,7 +19,7 @@ exports.delete = (bookId) => Book.findByIdAndDelete(bookId)
 
 
 //? Edit photo
-exports.edit = (bookId, bookData) => Book.findByIdAndUpdate(bookId, bookData).populate('owner')
+exports.edit = (bookId, bookData) => Book.findByIdAndUpdate(bookId, bookData,{new:true, runValidators:true}).populate('owner')
 
 
 //? Details render

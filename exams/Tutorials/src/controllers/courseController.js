@@ -149,7 +149,7 @@ router.get('/search', isAuth, async (req, res) => {
 
         if (!!result.search) {
             courses = await courseService.searchGames(result.search).lean()
-            console.log(courses)
+         
         } else {
             courses = await courseService.getAll().lean()
         }

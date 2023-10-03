@@ -15,7 +15,7 @@ exports.delete = (cryptoId) => Crypto.findByIdAndDelete(cryptoId)
 
 
 //? Edit photo
-exports.edit = (cryptoId, cryptoData) => Crypto.findByIdAndUpdate(cryptoId, cryptoData).populate('owner')
+exports.edit = (cryptoId, cryptoData) => Crypto.updateOne({ _id: cryptoId }, { $set: cryptoData }, { runValidators: true }).populate('owner')
 
 
 //? Details render

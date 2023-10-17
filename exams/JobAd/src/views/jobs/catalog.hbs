@@ -1,0 +1,43 @@
+
+        <main>
+
+            <section id="all-ads-page">
+                <article class="all-ads-title">
+                    <h1>All ads</h1>
+                </article>
+                    {{#if jobs}}
+                {{#each jobs}}
+                <article class="all-ads-card">
+                    <article class="all-ads-card-image">
+                        <!-- Do not forget to change the path to the image -->
+                        <img src="/img/job-icon1.png" alt="job-icon">
+                    </article>
+
+                    <article class="all-ads-card-content">
+                        <!--You must put the headline value in <h2>-->
+                        <h2>{{headline}} Designers</h2>
+                        <h3>Company Name: {{companyName}}</h3>
+                        <article class="all-ads-card-content-item">
+                            <!-- Do not forget to change the path to the image -->
+                            <img src="/img/map-icon.png">
+                            <p>{{location}}</p>
+                        </article>
+                    </article>
+                 
+
+                    <article class="all-ads-card-buttons">
+                        <a href="/jobs/{{_id}}/details" class="btn-details">Details</a>
+                    </article>
+                     
+                </article>
+                    {{/each}}
+
+              {{else}}
+                <article class="not-available-ads">
+                    <h1>No ads created yet.</h1>
+                    <h2>Join and find your perfect workers.</h2>
+                </article>
+                    {{/if}}
+            </section>
+        </main>
+

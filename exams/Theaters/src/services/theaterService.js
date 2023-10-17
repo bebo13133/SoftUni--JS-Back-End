@@ -1,10 +1,10 @@
 const Theater = require('../models/Theater')
 
 
-//? Create a new Crypto
-exports.create = async (courseData) => {
-    const newCourse = await Theater.create(courseData)
-    return newCourse
+//? Create a new Play
+exports.create = async (theaterData) => {
+    const newTheater = await Theater.create(theaterData)
+    return newTheater
 }
 
 //? Catalog render 
@@ -12,6 +12,8 @@ exports.getAll = () => Theater.find({ isPublic: true }).populate('owner')  //? Ð
 exports.getThreeTheaters = () => Theater.find().sort({ likes: [-1] }).limit(3)
 exports.getAllTheatersSorted = () => Theater.find().sort({ createdOn: [-1] })
 exports.getAllTheatersByLikes = () => Theater.find().sort({ likes: [-1] })
+
+
 //? Delete photo
 exports.delete = (theaterId) => Theater.findByIdAndDelete(theaterId)
 
@@ -29,5 +31,5 @@ exports.liked = (theaterId, userId) => Theater.findByIdAndUpdate(theaterId, { $p
 
 
 
-//? Search games
-exports.searchGames = (search) => Theater.find({ title: { $regex: search, $options: 'i' } })
+// //? Search games
+// exports.searchGames = (search) => Theater.find({ title: { $regex: search, $options: 'i' } })

@@ -12,5 +12,4 @@ connectDB()
 require('./config/express')(app);
 require('./config/routes')(app)
 
-
 app.listen(PORT, () =>log(`Server running on port ${PORT}`));

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Express Exam</title>
+    <link href="/css/style.css" type="text/css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container">
+        <nav>
+            <a>Theater</a>
+            <ul>
+                <li><a href="/">Home </a></li>
+
+                  {{#if isAuthenticated}}
+                <li><a href="/users/logout">Logout</a></li>
+                {{else}}
+                <li><a href="/users/login">Login</a></li>
+
+                <li><a href="/users/register">Register</a></li>
+                {{/if}}
+            </ul>
+        </nav>
+    {{#if error}}
+     {{#each error}}
+        <section class="notifications error">
+            <p>{{this}}</p>
+        </section>
+         {{/each}}
+{{/if}}
+        
+
+        {{{body}}}
+
+       <footer class="page-footer font-small">
+            <div class="footer-copyright text-center py-3">© 2020
+                <a href="https://softuni.bg/trainings/3048/js-back-end-september-2020">JS Back-End</a>
+            </div>
+        </footer>
+
+    </div>
+</body>
+
+</html>

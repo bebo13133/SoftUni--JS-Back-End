@@ -8,18 +8,18 @@ const { isAuth } = require('../middlewares/authMiddleware')
 
 
 //? rendering
-router.get('/create', (req, res) => {
+router.get('/create',isAuth, (req, res) => {
     res.render('jobs/create')
 })
 
 
 //? Create
-router.post('/create', async (req, res) => {
+router.post('/create', isAuth, async (req, res) => {
 
-    const {headline,
+    const { headline,
         location,
         companyName,
-        companyDescription,} = req.body
+        companyDescription, } = req.body
 
     try {
         await jobService.create({
@@ -28,9 +28,9 @@ router.post('/create', async (req, res) => {
             companyName,
             companyDescription,
             owner: req.user._id,
-        }) 
+        })
         res.redirect('/jobs/catalog')   //! да се насочи към каталог
- 
+
     } catch (err) {
 
         res.render('jobs/create', { error: extractErrorMessage(err) })
@@ -39,7 +39,7 @@ router.post('/create', async (req, res) => {
 
 
 //? Catalog page
-router.get('/catalog', async (req, res) => {
+router.get('/catalog',  async (req, res) => {
 
     try {
         const jobs = await jobService.getAll().lean()
@@ -58,7 +58,7 @@ router.get('/catalog', async (req, res) => {
 
 //? Details
 
-router.get('/:jobId/details', async (req, res) => {
+router.get('/:jobId/details', isAuth, async (req, res) => {
 
     try {
         const jobId = req.params.jobId
@@ -87,13 +87,13 @@ router.get('/:jobId/edit', isAuth, async (req, res) => {
     try {
         const job = await jobService.getOne(req.params.jobId).lean()
         const userId = req.user._id;
-        // crypto.dropDown = levels(crypto.payment); //? използвам го за зареждане на падащото меню 
+      
         if (job.owner._id.toString() != userId) {
             // console.log(job.owner._id)
             // console.log(userId)
-
             return res.redirect("/");
-          }
+        }
+
 
         res.render('jobs/edit', { job })
 
@@ -149,10 +149,10 @@ router.get('/search', isAuth, async (req, res) => {
 
     try {
 
-        if (!!result.search ) {
+        if (!!result.search) {
             jobs = await jobService.searchGames(result.search)
-                console.log(jobs)
-        } 
+            console.log(jobs)
+        }
         res.render('jobs/search', { jobs })
 
     } catch (err) {

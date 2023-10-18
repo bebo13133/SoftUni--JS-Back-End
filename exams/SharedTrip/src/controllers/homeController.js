@@ -35,21 +35,10 @@ if(req.user.gender === 'male'){
   genderImage ="/images/male.png"
 }else{
   genderImage = "/images/female.png"
-}
+}                                         //? добавих gender към tokenHelpers, за да мога тука да го имам като параметър ,за да мога да сменя снимката
 
   res.render('profile',{ownerTrips, genderImage})
 })
-// router.get('/profile',isAuth, async (req, res) => {
-// userId = req.user._id
-// const books = await postService.getOwnerPosts(userId).lean()
-// // const owner = await userService.findOwner(userId).lean()
-// // let fullName = `${owner.firstName} ${owner.lastName}`
-// //   posts.forEach(p => p.author = fullName );
-
-
-// // posts.author = fullName
-// // log(posts)
-
 
 
 

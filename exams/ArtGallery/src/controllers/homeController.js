@@ -6,8 +6,6 @@ const { extractErrorMessage } = require('../utils/errorHelpers')
 const userService = require('../services/userService')
 
 
-//! да не забравя да го експортна router
-
 
 router.get('/', async (req, res) => {
   try {

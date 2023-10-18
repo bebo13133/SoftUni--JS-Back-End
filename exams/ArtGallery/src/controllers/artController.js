@@ -138,8 +138,11 @@ router.get('/:artId/share', isAuth, async (req, res) => {
 
     try {
         await artService.share(artId, userId)
-        await userService.addUser(artId,userId)              
+
+        await userService.addUser(artId,userId)  
+
         res.redirect(`/arts/${artId}/details`)
+
     } catch (err) {
 
         const errorMessage = extractErrorMessage(err)
@@ -159,11 +162,11 @@ router.get('/:artId/delete', isAuth, async (req, res) => {
     try {
         await artService.delete(req.params.artId)
 
-        res.redirect('/trips/catalog')
+        res.redirect('/arts/catalog')
 
     } catch (err) {
         const errorMessage = extractErrorMessage(err)
-        res.render(`trips/details`, { error: errorMessage })
+        res.render(`arts/details`, { error: errorMessage })
     }
 });
 

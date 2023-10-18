@@ -1,4 +1,4 @@
-const { search } = require('../controllers/homeController')
+    const { search } = require('../controllers/homeController')
 const Book = require('../models/Book')
 
 
@@ -35,5 +35,5 @@ exports.getOne = (bookId) => Book.findById(bookId).populate('owner') //? Сло�
 exports.reading = (bookId, userId) => Book.findByIdAndUpdate(bookId, { $push: { wishingList: userId } }).populate('owner')
 
 //? profile
-exports.getOwnerPosts = (userId) => Book.find({owner: userId})
+exports.getOwnerPosts = (userId) => Book.find({wishingList: userId})
 

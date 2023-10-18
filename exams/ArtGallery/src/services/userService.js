@@ -35,6 +35,6 @@ exports.register = async (userData) =>{
 exports.findOwner=(userId) =>  User.findById(userId)  //? За да вземем името на потребителят
 
 
-exports.added = (artId, userId) => User.findByIdAndUpdate(userId, { $push: { publications: artId } }).populate('publications')
-exports.addUser = (artId, userId) => User.findByIdAndUpdate(userId, { $push: { shares: artId } }).populate('publications')
+exports.added = (artId, userId) => User.findByIdAndUpdate(userId, { $push: { publications: artId } })
+exports.addUser = (artId, userId) => User.findByIdAndUpdate(userId, { $push: { shares: artId } })
   

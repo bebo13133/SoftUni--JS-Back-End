@@ -5,13 +5,14 @@
             <section id="gallery">
                 <h1>Gallery</h1>
                  {{#if arts}}
+                  
                 <article class="gallery-container">
 
                     <!--If there are art publications in the database, show each of them-->
                  
-                    {{#each arts}}
+                        {{#each arts}}
                     <article class="card-info">
-                        
+                   
                         <article class="card-info-image">
                             <img src="{{picture}}" alt="art-image">
                         </article>
@@ -20,10 +21,11 @@
                             <h3>Certificate of authenticity: {{certificate}}</h3>
                             <a href="/arts/{{_id}}/details" class="details-btn">Details</a>
                         </article>
+                      
                         </article>
-                    {{/each}}
+                   {{/each}}
                     </article>
-
+   
                     
                         {{else}}
                     <!--If there are still no art publications in the database display:-->

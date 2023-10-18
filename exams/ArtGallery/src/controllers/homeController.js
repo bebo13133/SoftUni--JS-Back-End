@@ -36,19 +36,6 @@ const sharesTitle = user.shares.map(x=>x.title).join(", ")
   res.render('profile',{...user,publication, sharesTitle })
 })
 
-//   const ownerTrips = await tripService.getOwnerTrips(req.user._id).lean()
-//   console.log(req.user)
- 
-// let genderImage;
-// if(req.user.gender === 'male'){
-//   genderImage ="/images/male.png"
-// }else{
-//   genderImage = "/images/female.png"
-// }                                         //? добавих gender към tokenHelpers, за да мога тука да го имам като параметър ,за да мога да сменя снимката
-
-//   
-// })
-
 
 router.get('/404', (req, res) => {
     res.render('404')

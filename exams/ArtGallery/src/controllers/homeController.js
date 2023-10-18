@@ -30,10 +30,10 @@ console.log(arts)
 
 router.get('/profile',isAuth, async(req, res) => {
 
-    const user = await userService.findOwner(req.user._id).populate('publications').lean()
+    const user = await userService.findOwner(req.user._id).populate('publications').populate('shares').lean()
 const publication = user.publications.map(x=>x.title).join(", ")
-
-  res.render('profile',{...user,publication})
+const sharesTitle = user.shares.map(x=>x.title).join(", ")
+  res.render('profile',{...user,publication, sharesTitle })
 })
 
 //   const ownerTrips = await tripService.getOwnerTrips(req.user._id).lean()

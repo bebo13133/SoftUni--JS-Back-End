@@ -138,7 +138,7 @@ router.get('/:artId/share', isAuth, async (req, res) => {
 
     try {
         await artService.share(artId, userId)
-                            
+        await userService.addUser(artId,userId)              
         res.redirect(`/arts/${artId}/details`)
     } catch (err) {
 

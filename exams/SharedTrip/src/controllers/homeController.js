@@ -41,10 +41,6 @@ if(req.user.gender === 'male'){
 })
 
 
-
-
-
-
 router.get('/404', (req, res) => {
     res.render('404')
 })

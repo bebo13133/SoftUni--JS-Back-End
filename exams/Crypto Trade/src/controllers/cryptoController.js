@@ -137,7 +137,7 @@ router.get('/:cryptoId/buy', isAuth, async (req, res) => {
 
 router.get('/search', isAuth, async (req, res) => {
     const result = { ...req.query }
-    let cryptos;
+    // let cryptos;
 
     try {
 
@@ -148,7 +148,7 @@ router.get('/search', isAuth, async (req, res) => {
         //     cryptos = await cryptoService.getAll().lean()
         // }
 
-        cryptos = (!!result.search || !!result.payment) 
+        let cryptos = (!!result.search || !!result.payment) 
         ? await cryptoService.searchGames(result.search, result.payment).lean() 
         : await cryptoService.getAll().lean();
 

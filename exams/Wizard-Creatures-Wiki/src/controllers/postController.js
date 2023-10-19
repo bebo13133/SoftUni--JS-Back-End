@@ -87,7 +87,7 @@ router.get('/:postId/details', async (req, res) => {
         }
 
       
-        res.render('posts/details', { post, isOwner, resultEmail,emails })
+        res.render('posts/details', { post, isOwner, resultEmail, emails })
 
     } catch (err) {
         const errorMessage = extractErrorMessage(err)

@@ -5,7 +5,7 @@ const {SECRET_KEY} = require('../config/config')
 exports.createToken = async (user)=>{
     const payload = {
         _id: user._id,
-        username: user.username,
+        username: `${user.firstName} ${user.lastName}`,
         email: user.email,   //? optional property -според условието на задачата задаваме пропъртитата
     }
 

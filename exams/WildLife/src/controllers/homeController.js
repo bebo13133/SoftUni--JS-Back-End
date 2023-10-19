@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const { log } = require('console')
-const postService = require('../services/postService')
+const photoService = require('../services/photoService')
 const {isAuth} = require('../middlewares/authMiddleware');
 const { extractErrorMessage } = require('../utils/errorHelpers')
 const userService = require('../services/userService')
@@ -27,7 +27,7 @@ router.get('/', async (req, res) => {
 
 router.get('/profile',isAuth, async (req, res) => {
 userId = req.user._id
-const posts = await postService.getOwnerPosts(userId).lean()
+const posts = await photoService.getOwnerPosts(userId).lean()
 const owner = await userService.findOwner(userId).lean()
 let fullName = `${owner.firstName} ${owner.lastName}`
   posts.forEach(p => p.author = fullName );

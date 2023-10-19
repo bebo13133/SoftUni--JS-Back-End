@@ -7,7 +7,7 @@ const userSchema = new mongoose.Schema({
         required: [true, 'Please enter a username'],
         minLength: [4, 'characters required minimum with 3 length'],
         maxLength: 50,
-        // match: [/^[A-Za-z0-9]+$/, 'Username must be english'],   //? да се види имали го като условие 
+        match: /^[A-Za-z]{3,}$/,  //? да се види имали го като условие 
         unique: { value: true, message: 'this name is already in use' },
     },
     lastName: {
@@ -15,13 +15,13 @@ const userSchema = new mongoose.Schema({
         required: [true, 'Please enter a username'],
         minLength: [4, 'characters required minimum with 3 length'],
         maxLength: 50,
-        // match: [/^[A-Za-z0-9]+$/, 'Username must be english'],   //? да се види имали го като условие 
+        match: /^[A-Za-z]{5,}$/,   //? да се види имали го като условие 
         unique: { value: true, message: 'this name is already in use' },
     },
     email: {
         type: String,
         required: [true, 'Please enter a valid email address'],
-        minLength: [10, 'characters required minimum with 3 length']
+        match: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
     },
     password: {
         type: String,
@@ -34,7 +34,11 @@ const userSchema = new mongoose.Schema({
             },
             message: 'Password must be only english characters'  //? да се види условието 
         }
-    }
+    },
+    myPosts: {
+        type: [mongoose.Types.ObjectId],
+        ref: 'Photo'
+    },
 
 
 })

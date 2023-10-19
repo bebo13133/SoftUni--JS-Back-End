@@ -2,6 +2,8 @@ const cookieParser = require('cookie-parser');
 const express = require('express');
 const handlebars = require('express-handlebars');
 const {auth} = require('../middlewares/authMiddleware')
+const trimBody = require('../middlewares/trimBody')
+
 // const cookieParser = require('cookie-parser');
 
 
@@ -25,5 +27,6 @@ module.exports =(app) =>{
 
     //todo: 4. add authentication
     app.use(auth)
+    app.use(trimBody())
 }
 

@@ -141,12 +141,17 @@ router.get('/search', isAuth, async (req, res) => {
 
     try {
 
-        if (!!result.search || !!result.payment) {
-            cryptos = await cryptoService.searchGames(result.search, result.payment).lean()
+        // if (!!result.search || !!result.payment) {
+        //     cryptos = await cryptoService.searchGames(result.search, result.payment).lean()
 
-        } else {
-            cryptos = await cryptoService.getAll().lean()
-        }
+        // } else {
+        //     cryptos = await cryptoService.getAll().lean()
+        // }
+
+        cryptos = (!!result.search || !!result.payment) 
+        ? await cryptoService.searchGames(result.search, result.payment).lean() 
+        : await cryptoService.getAll().lean();
+
         res.render('cryptos/search', { cryptos })
 
     } catch (err) {

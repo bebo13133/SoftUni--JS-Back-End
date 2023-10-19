@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Home Page</title>
+
+    <!-- Do not forget to change the path to the css file -->
+    <link href="/css/style.css" type="text/css" rel="stylesheet">
+</head>
+
+<body>
+
+
+    <div id="box">
+            {{#each errors}}
+  
+        <div class="error-container">
+            <p>{{this}}</p>
+        </div>
+        {{/each}}
+
+        <nav>
+            <!-- Do not forget to change the path to the image -->
+            <img src="/img/logo.png" alt="logo">
+
+            <ul class="menu">
+                <li><a href="/">Home</a></li>
+                <li><a href="/posts/catalog">All Posts</a></li>
+
+                {{#if isAuthenticated}}
+                <li><a href="/posts/create">Create Post</a></li>
+                <li><a href="/profile">Profile</a></li>
+                <li><a href="/users/logout">Logout</a></li>
+
+                {{else}}
+                <li><a href="/users/register">Register</a></li>
+                <li><a href="/users/login">Login</a></li>
+                {{/if}}
+                <!-- Logged users -->
+                <!-- Guest users -->
+            </ul>
+
+        </nav>
+
+        {{{body}}}
+
+        <footer>
+            <p>@Friendly World</p>
+        </footer>
+    </div>
+</body>
+
+</html>
